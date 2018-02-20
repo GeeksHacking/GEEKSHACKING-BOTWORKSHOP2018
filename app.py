@@ -1,6 +1,8 @@
 import os
 
 
+from telegram.ext import Updater
+
 TOKEN = "400458894:AAHBO9dzUTASfEWZEbOB0oaN3k1wLVg2niM"
 PORT = int(os.environ.get('PORT', '80'))
 APP_NAME = "geekhacking"
