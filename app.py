@@ -23,8 +23,7 @@ logger = logging.getLogger(__name__)
 
 def start(bot, update):
     user_name = update.effective_user.name
-    update.message.reply_text('Hello *{}*!'.format(escape_markdown(user_name))
-				,parse_mode=True)
+    update.message.reply_text('Hello *{}*!'.format(escape_markdown(user_name)))
 
 
 def help(bot, update):
