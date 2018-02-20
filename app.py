@@ -2,23 +2,15 @@ import os
 
 
 from telegram.ext import Updater
-
-TOKEN = "400458894:AAHBO9dzUTASfEWZEbOB0oaN3k1wLVg2niM"
-PORT = int(os.environ.get('PORT', '80'))
-APP_NAME = "geekhacking"
-WEBHOOK_PATH = "hook{}".format(TOKEN)
-WEBHOOK_URL ="https://{}.herokuapp.com/{}".format(APP_NAME, WEBHOOK_PATH)
-
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import escape_markdown
-import logging
 
-# Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
+TOKEN = "400458894:AAHBO9dzUTASfEWZEbOB0oaN3k1wLVg2niM" # BOT TOKEN - should be in env var
+APP_NAME = "geekhacking" ## heroku app name
 
-logger = logging.getLogger(__name__)
+PORT = int(os.environ.get('PORT', '80')) 
+WEBHOOK_PATH = "hook{}".format(TOKEN)
+WEBHOOK_URL ="https://{}.herokuapp.com/{}".format(APP_NAME, WEBHOOK_PATH)
 
 
 def start(bot, update):
@@ -30,11 +22,10 @@ def help(bot, update):
     update.message.reply_text('this is the list of commands i support!!! \n...')
 
 
-def message(bot, update):
-    """Echo the user message."""
+def handleTextMessage(bot, update):
     update.message.reply_text(update.message.text)
 
-def main():
+def init():
 
 	updater = Updater(TOKEN)
 
@@ -48,12 +39,10 @@ def main():
 
 	dp.add_handler(CommandHandler("start", start ))
 	dp.add_handler(CommandHandler("help", help))
-	dp.add_handler(MessageHandler(Filters.text, echo))
+	dp.add_handler(MessageHandler(Filters.text, handleTextMessage))
 
-	# log all errors
-	dp.add_error_handler(error)
 	updater.idle()
 
 
 if __name__ == '__main__':
-	main()
+	init()
