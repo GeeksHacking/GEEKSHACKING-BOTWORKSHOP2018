@@ -36,16 +36,13 @@ def handleTextMessage(bot, update):
 		reply = "HELLO THERE! MY NAME IS *{}*".format(BOT_NAME_ESCAPED)
 		update.message.reply_text(reply, parse_mode="Markdown")
 
-	"""
-	else if text == "something else" :
-		dosomethingelse!!!!
-
-	
-	"""
+	elif text == "something else":
+		print("do something elseeeeee")
+		pass
 	
 	else:
+		print("REPEAT WHAT EVER THE USER SAID")
 		update.message.reply_text(text)
-	
 
 def init():
 
