@@ -30,23 +30,21 @@ def handleTextMessage(bot, update):
 	text = update.message.text
     
 	
-	if(if "hello" in text.lower()){
+	if "hello" in text.lower():
 		print("daww user is trying to say hello to me!!!")
 		
 		reply = "HELLO THERE! MY NAME IS *{}*".format(BOT_NAME_ESCAPED)
 		update.message.reply_text(reply, parse_mode="Markdown")
-	}
-	
+
 	"""
-	else if(text == "something else"){
+	else if text == "something else" :
 		dosomethingelse!!!!
-	}
+
 	
 	"""
 	
-	else {
+	else:
 		update.message.reply_text(text)
-	}
 	
 
 def init():
