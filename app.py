@@ -18,7 +18,7 @@ WEBHOOK_URL ="https://{}.herokuapp.com/{}".format(APP_NAME, WEBHOOK_PATH)
 
 def start(bot, update):
     user_name = update.effective_user.name
-    update.message.reply_text('Hello *{}*!'.format(escape_markdown(user_name)))
+    update.message.reply_text('Hello {}!'.format(escape_markdown(user_name)))
 
 
 def help(bot, update):
