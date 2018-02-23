@@ -13,7 +13,7 @@ BOT_NAME_ESCAPED = escape_markdown(BOT_NAME)
 
 PORT = int(os.environ.get('PORT', '80')) # this is set by heroku
 
-WEBHOOK_PATH = "hook{}".format(TOKEN)
+WEBHOOK_PATH = "hook{}".format(BOT_TOKEN)
 WEBHOOK_URL ="https://{}.herokuapp.com/{}".format(APP_NAME, WEBHOOK_PATH)
 
 def start(bot, update):
@@ -64,5 +64,4 @@ def init():
 
 
 if __name__ == '__main__':
-
 	init()
