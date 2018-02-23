@@ -5,13 +5,15 @@ from telegram.ext import Updater
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import escape_markdown
 
-TOKEN = "400458894:AAHBO9dzUTASfEWZEbOB0oaN3k1wLVg2niM" # BOT TOKEN - should be in env var
-APP_NAME = "geekhacking" ## heroku app name
 
-PORT = int(os.environ.get('PORT', '80')) 
+BOT_TOKEN = os.environ.get('BOT_TOKEN') # remember we set this earlier :)
+APP_NAME = os.environ.get('APP_NAME') # remember we set this earlier :)
+BOT_NAME = "@blahblahblah"
+
+PORT = int(os.environ.get('PORT', '80')) # this is set by heroku
+
 WEBHOOK_PATH = "hook{}".format(TOKEN)
 WEBHOOK_URL ="https://{}.herokuapp.com/{}".format(APP_NAME, WEBHOOK_PATH)
-
 
 def start(bot, update):
     user_name = update.effective_user.name
@@ -23,11 +25,30 @@ def help(bot, update):
 
 
 def handleTextMessage(bot, update):
-    update.message.reply_text(update.message.text)
+
+	text = update.message.text
+    
+	
+	if(text.contains("hello")){
+		print("daww user is trying to say hello to me!!!")
+		update.message.reply_text("HELLO MY NAME IS {}".format(BOT_NAME))
+	}
+	
+	"""
+	else if(text == "something else"){
+		dosomethingelse!!!!
+	}
+	
+	"""
+	
+	else {
+		update.message.reply_text(text)
+	}
+	
 
 def init():
 
-	updater = Updater(TOKEN)
+	updater = Updater(BOT_TOKEN)
 
 	updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
@@ -45,4 +66,5 @@ def init():
 
 
 if __name__ == '__main__':
+
 	init()
