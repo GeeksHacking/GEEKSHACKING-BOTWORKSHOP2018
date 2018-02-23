@@ -9,6 +9,7 @@ from telegram.utils.helpers import escape_markdown
 BOT_TOKEN = os.environ.get('BOT_TOKEN') # remember we set this earlier :)
 APP_NAME = os.environ.get('HEROKU_APP_NAME') # remember we set this earlier :)
 BOT_NAME = "@blahblahblah"
+BOT_NAME_ESCAPED = escape_markdown(BOT_NAME)
 
 PORT = int(os.environ.get('PORT', '80')) # this is set by heroku
 
@@ -29,9 +30,11 @@ def handleTextMessage(bot, update):
 	text = update.message.text
     
 	
-	if(text.contains("hello")){
+	if(if "hello" in text.lower()){
 		print("daww user is trying to say hello to me!!!")
-		update.message.reply_text("HELLO MY NAME IS {}".format(BOT_NAME))
+		
+		reply = "HELLO THERE! MY NAME IS *{}*".format(BOT_NAME_ESCAPED)
+		update.message.reply_text(reply, parse_mode="Markdown")
 	}
 	
 	"""
