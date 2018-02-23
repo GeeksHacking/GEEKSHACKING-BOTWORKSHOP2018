@@ -7,7 +7,7 @@ from telegram.utils.helpers import escape_markdown
 
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN') # remember we set this earlier :)
-APP_NAME = os.environ.get('APP_NAME') # remember we set this earlier :)
+APP_NAME = os.environ.get('HEROKU_APP_NAME') # remember we set this earlier :)
 BOT_NAME = "@blahblahblah"
 
 PORT = int(os.environ.get('PORT', '80')) # this is set by heroku
