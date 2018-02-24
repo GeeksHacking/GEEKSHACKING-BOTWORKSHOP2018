@@ -45,7 +45,7 @@ def handleTextMessage(bot, update):
 
 def init():
 
-	updater = Updater(BOT_TOKEN)
+	updater = Updater(BOT_TOKEN, request_kwargs={'read_timeout'=10, 'connect_timeout'=20})
 
 	updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
@@ -53,6 +53,7 @@ def init():
 
 	updater.bot.set_webhook(WEBHOOK_URL)
 
+	
 	dp = updater.dispatcher
 
 	dp.add_handler(CommandHandler("start", start ))
